@@ -1,0 +1,21 @@
+﻿@model List<SearcLocationViewModel.Hotel>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+
+<h2>Oteller</h2>
+<ul>
+@foreach (var hotel in Model)
+{
+    <li>
+        <strong>ID:</strong> @hotel.hotel_id <br />
+        <strong>Erişilebilirlik:</strong> @hotel.accessibilityLabel <br />
+        <hr />
+    </li>
+}
+</ul>

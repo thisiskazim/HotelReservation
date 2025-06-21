@@ -1,0 +1,50 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+@await Component.InvokeAsync("_HeadPartial")
+
+<style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .full-wrapper {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+    }
+
+    .main-content {
+        flex: 1;
+    }
+</style>
+
+<body>
+    <div class="full-wrapper">
+        @await Component.InvokeAsync("_SpinnerPartial")
+        @await Component.InvokeAsync("_NavbarPartial")
+        @await Component.InvokeAsync("_ContactCoverPartial")
+
+        <div class="main-content container-xxl p-0">
+            @await Html.PartialAsync("/Views/Contact/SendMessage.cshtml")
+            @await Html.PartialAsync("/Views/Default/_SubscribePartial.cshtml")
+        </div>
+
+        @await Component.InvokeAsync("_FooterPartial")
+
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
+            <i class="bi bi-arrow-up"></i>
+        </a>
+    </div>
+
+    @await Component.InvokeAsync("_ScriptsPartial")
+</body>
+
+</html>

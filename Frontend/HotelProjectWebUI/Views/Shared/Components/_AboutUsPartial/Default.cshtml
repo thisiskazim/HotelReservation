@@ -1,0 +1,63 @@
+﻿@model List<ResultAboutDto>
+@foreach (var item in Model)
+{
+
+
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <h6 class="section-title text-start text-primary text-uppercase">Hakkımızda </h6>
+                    <h1 class="mb-4">@item.Title1<span class="text-primary text-uppercase">@item.Title2</span></h1>
+                    <p class="mb-4">@item.Content</p>
+                    <div class="row g-3 pb-4">
+                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.1s">
+                            <div class="border rounded p-1">
+                                <div class="border rounded text-center p-4">
+                                    <i class="fa fa-hotel fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">@item.RoomCount</h2>
+                                    <p class="mb-0">Oda Sayısı</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.3s">
+                            <div class="border rounded p-1">
+                                <div class="border rounded text-center p-4">
+                                    <i class="fa fa-users-cog fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">@item.StaffCount</h2>
+                                    <p class="mb-0">Personel </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 wow fadeIn" data-wow-delay="0.5s">
+                            <div class="border rounded p-1">
+                                <div class="border rounded text-center p-4">
+                                    <i class="fa fa-users fa-2x text-primary mb-2"></i>
+                                    <h2 class="mb-1" data-toggle="counter-up">@item.CustomerCount</h2>
+                                    <p class="mb-0">Müşteri Sayısı</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="/Booking/Index/">Daha Fazlasını Keşfet </a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6 text-end">
+                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.1s" src="https://i.pinimg.com/1200x/4a/95/0f/4a950f8e077b08e9e510f772cef35662.jpg" style="margin-top: 25% ; height:223px ;width:223%;">
+                        </div>
+                        <div class="col-6 text-start">
+                            <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.3s" src="https://i.pinimg.com/736x/74/15/34/7415343de72b60fa9438580fb2d21dd4.jpg" style=" height:298px ;width:298%;">
+                        </div>
+                        <div class="col-6 text-end">
+                            <img class="img-fluid rounded w-50 wow zoomIn" data-wow-delay="0.5s" src="https://i.pinimg.com/736x/06/cf/67/06cf6720eabd1bb3a47972902ac2cc84.jpg" style=" height:150px ;width:150%;">
+                        </div>
+                        <div class="col-6 text-start">
+                            <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.7s" src="https://images.pexels.com/photos/1001965/pexels-photo-1001965.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" style=" height:223px ;width:223%;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

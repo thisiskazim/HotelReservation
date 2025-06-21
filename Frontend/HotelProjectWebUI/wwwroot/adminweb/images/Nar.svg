@@ -1,0 +1,17 @@
+﻿<svg
+    version="1.1"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 400 150"
+    xml:space="preserve"
+    width="150"
+    height="75"
+>
+    <!-- Arka Plan -->
+    <rect width="350" height="150" fill="#F3EDF7" rx="20"/>
+
+    <!-- "NAR" Yazısı -->
+    <text x="50" y="100" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#5E1675">NAR</text>
+
+   
+</svg>
