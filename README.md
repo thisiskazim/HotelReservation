@@ -1,4 +1,4 @@
-# 🏨 ASP.NET Core 6 Hotel Rezervasyon Sistemi
+# 🏨 ASP.NET Core 8 Hotel Rezervasyon Sistemi
 
 Bu proje, Murat Yücedağ’ın Udemy'de sunduğu **“Asp.Net Core API - RapidAPI ve API Consume Hotel Rezervasyon Sitesi”** eğitimi kapsamında geliştirilmiştir.
 
@@ -14,7 +14,7 @@ Bu proje, Murat Yücedağ’ın Udemy'de sunduğu **“Asp.Net Core API - RapidA
 
 ## 🛠️ Kullanılan Teknolojiler
 
-- **ASP.NET Core 6**
+- **ASP.NET Core 8**
 - **Entity Framework Core** (Code First)
 - **MSSQL**
 - **JWT Token Authentication**
