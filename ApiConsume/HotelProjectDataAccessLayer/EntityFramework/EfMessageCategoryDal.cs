@@ -12,9 +12,11 @@ namespace HotelProjectDataAccessLayer.EntityFramework
 {
     public class EfMessageCategoryDal   :GenericRepository<MessageCategory>,IMessageCategoryDal
     {
+        private readonly Context _context;
+
         public EfMessageCategoryDal(Context context) : base(context)
         {
-
+            _context = context;
         }
     }
 }

@@ -13,9 +13,11 @@ namespace HotelProjectDataAccessLayer.EntityFramework
     public class EfServiceDal :GenericRepository<Service>,IServicesDal
     {
 
-        public EfServiceDal(Context context) : base(context)
-        {
+            private readonly Context _context;
 
-        }
+            public EfServiceDal(Context context) : base(context)
+            {
+                _context = context;
+            }
     }
 }

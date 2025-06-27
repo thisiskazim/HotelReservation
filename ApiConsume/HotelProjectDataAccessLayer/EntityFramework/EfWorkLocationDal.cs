@@ -13,9 +13,12 @@ namespace HotelProjectDataAccessLayer.EntityFramework
 {
     public class EfWorkLocationDal : GenericRepository<WorkLocation>, IWorkLocationDal
     {
+
+        private readonly Context _context;
+
         public EfWorkLocationDal(Context context) : base(context)
         {
-
+            _context = context;
         }
     }
 }

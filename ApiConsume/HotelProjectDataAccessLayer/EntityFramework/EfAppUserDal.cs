@@ -14,29 +14,26 @@ namespace HotelProjectDataAccessLayer.EntityFramework
 {
     public class EfAppUserDal : GenericRepository<AppUser>, IAppUserDal
     {
+        private readonly Context _context;
+
         public EfAppUserDal(Context context) : base(context)
         {
-
+            _context = context;
         }
 
         public List<AppUser> UserListWithWorkLocation()
         {
-          var context=new Context();
-            return context.Users.Include(x=>x.WorkLocation).ToList();
+            return _context.Users.Include(x => x.WorkLocation).ToList();
         }
 
-       public  List<AppUser> UserListWithWorkLocations()
+        public List<AppUser> UserListWithWorkLocations()
         {
-         var context= new Context();
-            var values= context.Users.Include(x => x.WorkLocation).ToList();
-            return values; ;
+            return _context.Users.Include(x => x.WorkLocation).ToList();
         }
 
-      public int AppUserCount()
+        public int AppUserCount()
         {
-            var context = new Context();
-            var value=context.Users.Count();
-            return value;
+            return _context.Users.Count();
         }
     }
 }

@@ -12,24 +12,24 @@ namespace HotelProjectDataAccessLayer.EntityFramework
     public class EfStaffDal : GenericRepository<Staff>, IStaffDal
     {
 
+        private readonly Context _context;
+
         public EfStaffDal(Context context) : base(context)
         {
-            
-
+            _context = context;
         }
 
         public int GetStaffCount()
         {
-            using var context = new Context();
-            var value = context.Staffs.Count();      
+            var value = _context.Staffs.Count();      
             return value;
 
         }
 
       public List<Staff> Last4Staff()
-        {
-            using var context = new Context();
-            var values=context.Staffs.OrderByDescending(x=>x.StafID).Take(4).ToList();
+        {  
+
+            var values=_context.Staffs.OrderByDescending(x=>x.StafID).Take(4).ToList();
             return values;
         }
     }                                                            

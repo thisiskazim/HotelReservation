@@ -12,14 +12,16 @@ namespace HotelProjectDataAccessLayer.EntityFramework
 {
     public class EfContactDal : GenericRepository<Contact>, IContactDal
     {
-        public EfContactDal(Context context) : base(context)
+        private readonly Context _context;
+
+        public EfContactDal(Context context):base(context)
         {
+            _context = context;
         }
 
         public int GetContactCount()
         {
-            var context = new Context();
-            return context.Contacts.Count();
+            return _context.Contacts.Count();
         }
     }
 }

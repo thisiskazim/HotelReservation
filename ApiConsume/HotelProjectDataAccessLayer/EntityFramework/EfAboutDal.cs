@@ -12,9 +12,12 @@ namespace HotelProjectDataAccessLayer.EntityFramework
 {
     public class EfAboutDal : GenericRepository<About>, IAboutDal
     {
-        public EfAboutDal(Context context) : base(context)
-        {
+  
+        private readonly Context _context;
 
+        public EfAboutDal(Context context):base(context)
+        {
+            _context = context;
         }
     }
 }

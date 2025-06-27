@@ -12,9 +12,12 @@ namespace HotelProjectDataAccessLayer.EntityFramework
 {
    public  class EfTestimonialDal : GenericRepository<Testimonial>, ITestimonialDal
     {
+
+        private readonly Context _context;
+
         public EfTestimonialDal(Context context) : base(context)
         {
-
+            _context = context;
         }
     }
 }

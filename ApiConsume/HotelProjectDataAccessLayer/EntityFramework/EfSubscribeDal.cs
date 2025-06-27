@@ -13,9 +13,11 @@ namespace HotelProjectDataAccessLayer.EntityFramework
    public  class EfSubscribeDal :GenericRepository<Subscribe>,ISubscribeDal
     {
 
-        public EfSubscribeDal(Context context) : base(context)
-        {
+            private readonly Context _context;
 
-        }
+            public EfSubscribeDal(Context context) : base(context)
+            {
+                _context = context;
+            }
     }
 }
