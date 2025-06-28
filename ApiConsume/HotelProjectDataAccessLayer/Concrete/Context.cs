@@ -16,7 +16,7 @@ namespace HotelProjectDataAccessLayer.Concrete
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=NARIN\\SQLEXPRESS;initial catalog=ApiDb;integrated security=true");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-7AVL9GC\\SQLSERVER2022;Database=HotelReservationDB;Trusted_Connection=True;TrustServerCertificate=True;");
 
         }
 
