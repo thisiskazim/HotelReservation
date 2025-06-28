@@ -22,7 +22,7 @@ namespace HotelProjectWebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5000/api/Guest");
+            var responseMessage = await client.GetAsync("http://localhost:5001/api/Guest");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -62,7 +62,7 @@ namespace HotelProjectWebUI.Controllers
         {
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"http://localhost:5000/api/Guest/{id}");
+            var responseMessage = await client.DeleteAsync($"http://localhost:5001/api/Guest/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
 
@@ -74,7 +74,7 @@ namespace HotelProjectWebUI.Controllers
         public async Task<IActionResult> UpdateGuest(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"http://localhost:5000/api/Guest/{id}");
+            var responseMessage = await client.GetAsync($"http://localhost:5001/api/Guest/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -92,7 +92,7 @@ namespace HotelProjectWebUI.Controllers
                 var client = _httpClientFactory.CreateClient();
                 var jsonData = JsonConvert.SerializeObject(updateGuestDto);
                 StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                var responseMessage = await client.PutAsync($"http://localhost:5000/api/Staff/", stringContent);
+                var responseMessage = await client.PutAsync($"http://localhost:5001/api/Staff/", stringContent);
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Index");

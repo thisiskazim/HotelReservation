@@ -18,7 +18,7 @@ namespace HotelProjectWebUI.Controllers
         public IActionResult Index(AdminMailViewModel model)
         {
             MimeMessage mimeMessage= new MimeMessage();
-            MailboxAddress mailboxAddressFrom = new MailboxAddress("HotelierAdmin", "burası bizim mailimiz");
+            MailboxAddress mailboxAddressFrom = new MailboxAddress("HotelierAdmin", "ulvikazim02@gmail.com");
             mimeMessage.From.Add(mailboxAddressFrom);
             MailboxAddress mailboxAddressTo = new MailboxAddress("user", model.RecevierMail);
             mimeMessage.To.Add(mailboxAddressTo);

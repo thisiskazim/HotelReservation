@@ -1,6 +1,7 @@
 ﻿using HotelProjectWebUI.Models.Staff;
 using HotelProjectWebUI.Models.Testimonial;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -12,16 +13,20 @@ namespace HotelProjectWebUI.Controllers
     public class TestimonialController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
+        private readonly string _apiBaseUrl;
 
-        public TestimonialController(IHttpClientFactory httpClientFactory)
+        public TestimonialController(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            _apiBaseUrl = _configuration["ApiBaseUrl"];
         }
 
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5000/api/Testimonial");
+            var responseMessage = await client.GetAsync($"{_apiBaseUrl}/api/Testimonial");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -42,7 +47,7 @@ namespace HotelProjectWebUI.Controllers
         {
             var client = _httpClientFactory.CreateClient(); var jsonData = JsonConvert.SerializeObject(model);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:5000/api/Testimonial", stringContent);
+            var responseMessage = await client.PostAsync($"{_apiBaseUrl}/api/Testimonial", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -53,7 +58,7 @@ namespace HotelProjectWebUI.Controllers
         {
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"http://localhost:5000/api/Testimonial/{id}");
+            var responseMessage = await client.DeleteAsync($"{_apiBaseUrl}/api/Testimonial/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
 
@@ -65,7 +70,7 @@ namespace HotelProjectWebUI.Controllers
         public async Task<IActionResult> UpdateTestimonial(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"http://localhost:5000/api/Staff/{id}");
+            var responseMessage = await client.GetAsync($"{_apiBaseUrl}/api/Staff/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -81,7 +86,7 @@ namespace HotelProjectWebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(model);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync($"http://localhost:5000/api/Testimonial/", stringContent);
+            var responseMessage = await client.PutAsync($"{_apiBaseUrl}/api/Testimonial/", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

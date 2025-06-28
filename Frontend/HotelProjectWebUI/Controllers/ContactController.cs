@@ -30,7 +30,7 @@ namespace HotelProjectWebUI.Controllers
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5000/api/MessageCategory");
+            var responseMessage = await client.GetAsync("http://localhost:5001/api/MessageCategory");
            
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultMessageCategoryDto>>(jsonData);
@@ -59,7 +59,7 @@ namespace HotelProjectWebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createContactDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:5000/api/Contact", stringContent);
+            var responseMessage = await client.PostAsync("http://localhost:5001/api/Contact", stringContent);
            
                 return RedirectToAction("Index", "Default");
           

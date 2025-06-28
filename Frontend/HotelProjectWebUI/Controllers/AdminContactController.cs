@@ -3,6 +3,7 @@ using HotelProjectWebUI.Dtos.SendMessageController;
 using HotelProjectWebUI.Models.Staff;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,10 +19,14 @@ namespace HotelProjectWebUI.Controllers
     public class AdminContactController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
+        private readonly string _apiBaseUrl;
 
-        public AdminContactController(IHttpClientFactory httpClientFactory)
+        public AdminContactController(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            _apiBaseUrl = _configuration["ApiBaseUrl"];
         }
 
 
@@ -29,9 +34,9 @@ namespace HotelProjectWebUI.Controllers
         {
             var client = _httpClientFactory.CreateClient();
 
-            var responseMessage = await client.GetAsync("http://localhost:5000/api/Contact");
-            var responseMessage2 = await client.GetAsync("http://localhost:5000/api/Contact/GetContactCount");
-            var responseMessage3 = await client.GetAsync("http://localhost:5000/api/SendMessage/GetSendMessageCount");
+            var responseMessage = await client.GetAsync($"{_apiBaseUrl}/api/Contact");
+            var responseMessage2 = await client.GetAsync($"{_apiBaseUrl}/api/Contact/GetContactCount");
+            var responseMessage3 = await client.GetAsync($"{_apiBaseUrl}/api/SendMessage/GetSendMessageCount");
 
             List<InboxContactDto> values = new List<InboxContactDto>();
 
@@ -82,7 +87,7 @@ namespace HotelProjectWebUI.Controllers
         public async Task<IActionResult> SendBox()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5000/api/SendMessage");
+            var responseMessage = await client.GetAsync($"{_apiBaseUrl}/api/SendMessage");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -108,7 +113,7 @@ namespace HotelProjectWebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createSendMessage);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:5000/api/SendMessage", stringContent);
+            var responseMessage = await client.PostAsync($"{_apiBaseUrl}/api/SendMessage", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             
             {
@@ -135,7 +140,7 @@ namespace HotelProjectWebUI.Controllers
 
         public async Task<IActionResult> MessageDetailsByInbox(int id) {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"http://localhost:5000/api/SendMessage/{id}");
+            var responseMessage = await client.GetAsync($"{_apiBaseUrl}/api/SendMessage/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -148,7 +153,7 @@ namespace HotelProjectWebUI.Controllers
    
         public async Task<IActionResult> MessageDetailsBySendbox(int id) {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"http://localhost:5000/api/Contact/{id}");
+            var responseMessage = await client.GetAsync($"{_apiBaseUrl}/api/Contact/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -163,7 +168,7 @@ namespace HotelProjectWebUI.Controllers
         //public async Task<IActionResult>GetContactCount()
         //{
         //    var client = _httpClientFactory.CreateClient();
-        //    var responseMessage = await client.GetAsync("http://localhost:5000/api/GetContactCount");
+        //    var responseMessage = await client.GetAsync("http://localhost:5001/api/GetContactCount");
         //    if (responseMessage.IsSuccessStatusCode)
         //    {
         //        var jsonData = await responseMessage.Content.ReadAsStringAsync();

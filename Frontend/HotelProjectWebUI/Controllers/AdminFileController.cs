@@ -5,11 +5,23 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace HotelProjectWebUI.Controllers
 {
     public class AdminFileController : Controller
     {
+     
+        private readonly IConfiguration _configuration;
+        private readonly string _apiBaseUrl;
+
+        public AdminFileController( IConfiguration configuration)
+        {
+            _configuration = configuration;
+            _apiBaseUrl = _configuration["ApiBaseUrl"];
+        }
+
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -27,7 +39,7 @@ namespace HotelProjectWebUI.Controllers
             MultipartFormDataContent multipartFormDataContent = new MultipartFormDataContent();
             multipartFormDataContent.Add(byteArrayContent, "file", file.FileName);
             var HttpClient = new HttpClient();
-            await HttpClient.PostAsync("http://localhost:5000/api/FileProcess", multipartFormDataContent);
+            await HttpClient.PostAsync($"{_apiBaseUrl}/api/FileProcess", multipartFormDataContent);
 
             return View();
         }

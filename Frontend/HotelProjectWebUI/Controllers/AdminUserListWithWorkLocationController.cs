@@ -1,5 +1,6 @@
 ﻿using HotelProjectWebUI.Dtos.AppUserDto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,16 +11,20 @@ namespace HotelProjectWebUI.Controllers
     public class AdminUserListWithWorkLocationController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
+        private readonly string _apiBaseUrl;
 
-        public AdminUserListWithWorkLocationController(IHttpClientFactory httpClientFactory)
+        public AdminUserListWithWorkLocationController(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            _apiBaseUrl = _configuration["ApiBaseUrl"];
         }
 
         public async Task<IActionResult> UserList()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5000/api/AppUserWorkLocation");
+            var responseMessage = await client.GetAsync($"{_apiBaseUrl}/api/AppUserWorkLocation");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
