@@ -19,22 +19,22 @@ namespace HotelProjectWebUI.ViewComponents.Dashboard
         public async Task<IViewComponentResult>InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5000/api/DashboardWidgetsControllers/StaffCount");
+            var responseMessage = await client.GetAsync("http://localhost:5001/api/DashboardWidgetsControllers/StaffCount");
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             ViewBag.staffCount = jsonData;
                                     
             var client2 = _httpClientFactory.CreateClient();
-            var responseMessage2 = await client2.GetAsync("http://localhost:5000/api/DashboardWidgetsControllers/BookingCount");
+            var responseMessage2 = await client2.GetAsync("http://localhost:5001/api/DashboardWidgetsControllers/BookingCount");
             var jsonData2 = await responseMessage2.Content.ReadAsStringAsync();
             ViewBag.BookingCount = jsonData2;
                                                                             
             var client3 = _httpClientFactory.CreateClient();
-            var responseMessage3 = await client3.GetAsync("http://localhost:5000/api/DashboardWidgetsControllers/AppUserCount");
+            var responseMessage3 = await client3.GetAsync("http://localhost:5001/api/DashboardWidgetsControllers/AppUserCount");
             var jsonData3 = await responseMessage3.Content.ReadAsStringAsync();
             ViewBag.AppUserCount = jsonData3;   
             
             var client4 = _httpClientFactory.CreateClient();
-            var responseMessage4 = await client3.GetAsync("http://localhost:5000/api/DashboardWidgetsControllers/RoomCount");
+            var responseMessage4 = await client3.GetAsync("http://localhost:5001/api/DashboardWidgetsControllers/RoomCount");
             var jsonData4 = await responseMessage4.Content.ReadAsStringAsync();
             ViewBag.RoomCount = jsonData4;
               

@@ -20,7 +20,7 @@ namespace HotelProjectWebUI.ViewComponents.Dashboard
 		public async Task<IViewComponentResult> InvokeAsync()
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.GetAsync("http://localhost:5000/api/Booking/Last6Bookings");
+			var responseMessage = await client.GetAsync("http://localhost:5001/api/Booking/Last6Bookings");
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responseMessage.Content.ReadAsStringAsync();

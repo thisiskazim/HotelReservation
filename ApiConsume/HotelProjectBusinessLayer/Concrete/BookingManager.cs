@@ -20,6 +20,8 @@ namespace HotelProjectBusinessLayer.Concrete
 
         public void TBookingStatusChangeApproved(Booking booking)
         {
+
+
             _bookingDal.BookingStatusChangeApproved(booking);
         }
 
@@ -45,6 +47,21 @@ namespace HotelProjectBusinessLayer.Concrete
 
         public void TInsert(Booking t)
         {
+            //var varMi = _bookingDal.GetList();
+            //varMi.Where(p => p.BookingID = t.BookingID).FirstOrDefault();
+            if (t != null && t.Checkin > t.CheckOut)
+            {
+                t.ErrorMessages.Add("Giriş tarihi çıkış tarihinden büyük olamaz.");
+            }
+            if (t.Checkin < DateTime.Now.Date)
+            {
+                t.ErrorMessages.Add("Giriş tarihi geçmişte olamaz.");
+            }
+            if (t.ErrorMessages.Any())
+            {
+                return; // hata var, işleme devam etme
+            }
+            
             _bookingDal.Insert(t);
         }
 
