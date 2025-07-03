@@ -1,4 +1,5 @@
-﻿using HotelProjectBusinessLayer.Abstract;
+﻿using System.Linq;
+using HotelProjectBusinessLayer.Abstract;
 using HotelProjectEntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +28,14 @@ namespace HotelProjectWebApi.Controllers
         public IActionResult AddBooking(Booking booking)
         {
             _bookingService.TInsert(booking);
+
+            if (booking.ErrorMessages.Any())
+            {
+                return BadRequest(booking.ErrorMessages); // hata listesini UI'ya gönder
+            }
+
             return Ok();
+
         }
         [HttpDelete("{id}")]
         public IActionResult DeleteBooking(int id)

@@ -2,9 +2,8 @@
 using HotelProjectBusinessLayer.Abstract;
 using HotelProjectDtoLayer.Dtos.RoomDto;
 using HotelProjectEntityLayer.Concrete;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+
 
 namespace HotelProjectWebApi.Controllers
 {

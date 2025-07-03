@@ -13,18 +13,20 @@ namespace HotelProjectWebApi.Controllers
     public class AppUserWorkLocationController : ControllerBase
     {
         private readonly IAppUserService _appUserService;
+        private readonly Context _context;
 
-        public AppUserWorkLocationController(IAppUserService appUserService)
+        public AppUserWorkLocationController(IAppUserService appUserService,Context context)
         {
             _appUserService = appUserService;
+             _context= context;
         }
 
         [HttpGet]
         public IActionResult Index()
         {
             //var values =_appUserService.TUserListWithWorkLocations();
-            Context context = new Context();
-            var values= context.Users.Include(x=>x.WorkLocation).Select(y=>new AppUserWorkLocationViewModel
+           
+            var values= _context.Users.Include(x=>x.WorkLocation).Select(y=>new AppUserWorkLocationViewModel
             {
                 Name = y.Name,
                 Surname = y.Surname,
