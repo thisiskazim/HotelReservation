@@ -49,18 +49,17 @@ Bu proje, Murat Yücedağ’ın Udemy'de sunduğu **“Asp.Net Core API - RapidA
 ## 📸 Ekran Görüntüleri
 
 ### 🏠 Ana Sayfa
-![son555](https://github.com/user-attachments/assets/c2e25ce2-6d4c-4783-994c-29db7fc8eaf3)
----
-
-### 📅 Rezervasyon Sayfası
-![Rezervasyon](https://github.com/user-attachments/assets/e6d7c8e7-a85e-4cf3-b66c-57b3167c7219)
-
-----
-
-### 📬 İletişim Sayfası
-![iletişim](https://github.com/user-attachments/assets/1bfaa671-1fd1-4663-bd1b-5aceedd58ced)
+![Image](https://github.com/user-attachments/assets/ebde242c-3883-414d-a697-7edb7760da7e)
+![Image](https://github.com/user-attachments/assets/59b5e225-7a6d-493e-815c-d6ab720fc805)
+![Image](https://github.com/user-attachments/assets/a266d310-a14c-43eb-be45-3616a61fe032)
+![Image](https://github.com/user-attachments/assets/2e89a477-7005-49ba-b98d-b4b624d4c722)
 
 
+
+### 🏠 Panel
+![Image](https://github.com/user-attachments/assets/af23d221-c622-49e1-93b9-d0d16b02be40)
+![Image](https://github.com/user-attachments/assets/ef8b35f0-51b7-447a-8e9a-a1533a7f0b3a)
+![Image](https://github.com/user-attachments/assets/f4b5b8c4-b11a-40d9-a0e4-53be7a073664)
 
 
 ---
