@@ -60,24 +60,7 @@ Bu proje, Murat Yücedağ’ın Udemy'de sunduğu **“Asp.Net Core API - RapidA
 ### 📬 İletişim Sayfası
 ![iletişim](https://github.com/user-attachments/assets/1bfaa671-1fd1-4663-bd1b-5aceedd58ced)
 
-----
 
-## Dashboard Ekranı
-![image](https://github.com/user-attachments/assets/1c194aaf-e918-4350-953a-734682792e60)
-![rezervasyonsooon](https://github.com/user-attachments/assets/8353c394-374e-4383-97d8-d7bdd1c11f99)
-![Ekran görüntüsü 2025-05-21 123336](https://github.com/user-attachments/assets/56ad14c2-0528-4efd-b9c5-dc066b2d74f1)
-![Ekran görüntüsü 2025-05-21 123415](https://github.com/user-attachments/assets/75807416-edec-4541-9354-5248241c1af3)
-![Ekran görüntüsü 2025-05-21 123621](https://github.com/user-attachments/assets/369f5d1f-e996-42c9-b599-463c5c4e451e)
-![Ekran görüntüsü 2025-05-21 123646](https://github.com/user-attachments/assets/081c76d7-6476-4196-bf1e-66a35259e0da)
-![dashboar odalar](https://github.com/user-attachments/assets/9e1fcbf5-8845-4704-bc48-2be8f64a2149)
-![image](https://github.com/user-attachments/assets/20f6dd05-e89c-4e99-98f1-436360623882)
-![image](https://github.com/user-attachments/assets/f97b9cf2-dd6c-460e-bfc4-aa3023a453f7)
-
----
-
-## Rapid Api Çalışmaları
-![Ekran görüntüsü 2025-05-21 123738](https://github.com/user-attachments/assets/f34df4c5-dc72-4b12-a1e0-9b651748330c)
-![Ekran görüntüsü 2025-05-21 123759](https://github.com/user-attachments/assets/bd3e22bd-b654-4f71-9993-4c2a22a2b603)
 
 
 ---
