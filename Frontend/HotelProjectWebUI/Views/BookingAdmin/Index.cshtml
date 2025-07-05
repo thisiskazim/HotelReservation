@@ -18,6 +18,7 @@
                             <th>Onayla</th>
                             <th>Beklet</th>
                             <th>Güncelle</th>
+                            <th>Sil</th>
                             <th>Detaylar</th>
                         
                         </tr>
@@ -34,12 +35,27 @@
                             <td>@(((DateTime)item.CheckOut).ToString("dd-MMM-yyyy"))</td>
                         
                             <td>
-                                <span class="badge badge-primary px-2">@item.Status</span>
+                        @if(item.Status == "İptal Edildi")
+                        {
+                            <span class="badge badge-danger px-2">@item.Status</span>
+                        }
+                        else if (item.Status == "Müşteri Aranacak")
+                        {
+                            <span class="badge badge-warning px-2">@item.Status</span>
+
+                        }
+                        else if (item.Status == "Onaylandı")
+                        {
+                            <span class="badge badge-primary px-2">@item.Status</span>
+
+                        }
+
                             </td>
                             <td><a href="/BookingAdmin/ApprovedReservation2/@item.BookingID" class="btn btn-outline-primary">Onayla</a></td>
                     <td><a href="/BookingAdmin/CancelRezervation/@item.BookingID" class="btn btn-outline-danger">İptal Et</a></td>
                     <td><a href="/BookingAdmin/WaitRezervation/@item.BookingID" class="btn btn-outline-warning"> Beklet</a></td>
                     <td><a href="/BookingAdmin/UpdateBooking/@item.BookingID" class="btn btn-outline-info">Güncelle</a></td>
+                    <td><a href="/BookingAdmin/DeleteRezervation/@item.BookingID" class="btn mb-1 btn-rounded btn-outline-danger">Sil</a></td>
                     <td><a href="/BookingAdmin/UpdateBooking/@item.BookingID" class="btn btn-outline-dark">Detaylar</a></td>
                 </tr>
                 }

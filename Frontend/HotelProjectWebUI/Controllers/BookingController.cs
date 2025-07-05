@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace HotelProjectWebUI.Controllers
 {
@@ -15,10 +16,14 @@ namespace HotelProjectWebUI.Controllers
     public class BookingController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
+        private readonly string _apiBaseUrl;
 
-        public BookingController(IHttpClientFactory httpClientFactory)
+        public BookingController(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            _apiBaseUrl = _configuration["ApiBaseUrl"];
         }
         public IActionResult Index()
         {
@@ -40,39 +45,35 @@ namespace HotelProjectWebUI.Controllers
                 return View("Index",createBookingDto);
             }
 
-                createBookingDto.Status = "Onay Bekliyor";
+             
                 var client = _httpClientFactory.CreateClient();
                 var jsonData = JsonConvert.SerializeObject(createBookingDto);
                 StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-                var response = await client.PostAsync("http://localhost:5001/api/Booking", stringContent);
+                var response = await client.PostAsync($"{_apiBaseUrl}/api/Booking", stringContent);
 
 
 
                 if (response.IsSuccessStatusCode)
                 {
-                     ViewBag.SuccessMessage = "Rezervasyon başarıyla tamamlandı.";
+                    createBookingDto.Status = "Onay Bekliyor";
+                   ViewBag.SuccessMessage = "Rezervasyon başarıyla tamamlandı.";
                     return View("Index");
                 }
                 else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
-                    // Hata mesajlarını JSON olarak al
                     var errorJson = await response.Content.ReadAsStringAsync();
 
-                    // Hata mesajlarını List<string> olarak deserialize et
                     var errors = JsonConvert.DeserializeObject<List<string>>(errorJson);
 
-                    // ModelState'e ekle ki View'da gösterilsin
                     foreach (var error in errors)
                     {
                         ModelState.AddModelError(string.Empty, error);
                     }
 
-                    // Formu tekrar hatalarla birlikte göster
                     return View("Index", createBookingDto);
                 }
                 else
                 {
-                    // Başka hata varsa genel hata mesajı verebilirsin
                     ModelState.AddModelError(string.Empty, "Beklenmeyen bir hata oluştu.");
                     return View("Index", createBookingDto);
                 }

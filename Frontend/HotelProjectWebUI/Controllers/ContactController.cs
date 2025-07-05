@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Linq;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Configuration;
 
 
 namespace HotelProjectWebUI.Controllers
@@ -21,16 +22,20 @@ namespace HotelProjectWebUI.Controllers
     public class ContactController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
+        private readonly string _apiBaseUrl;
 
-        public ContactController(IHttpClientFactory httpClientFactory)
+        public ContactController(IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
             _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            _apiBaseUrl = _configuration["ApiBaseUrl"];
         }
 
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("http://localhost:5001/api/MessageCategory");
+            var responseMessage = await client.GetAsync($"{_apiBaseUrl}/api/MessageCategory");
            
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultMessageCategoryDto>>(jsonData);
@@ -59,7 +64,7 @@ namespace HotelProjectWebUI.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createContactDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("http://localhost:5001/api/Contact", stringContent);
+            var responseMessage = await client.PostAsync($"{_apiBaseUrl}/api/Contact", stringContent);
            
                 return RedirectToAction("Index", "Default");
           

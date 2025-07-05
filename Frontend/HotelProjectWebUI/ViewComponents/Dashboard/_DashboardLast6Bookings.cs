@@ -5,22 +5,28 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace HotelProjectWebUI.ViewComponents.Dashboard
 {
 	public class _DashboardLast6Bookings : ViewComponent
 	{
-		private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
+        private readonly string _apiBaseUrl;
 
-		public _DashboardLast6Bookings(IHttpClientFactory httpClientFactory)
-		{
-			_httpClientFactory = httpClientFactory;
-		}
+        public _DashboardLast6Bookings(IHttpClientFactory httpClientFactory, IConfiguration configuration)
+        {
+            _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
+            _apiBaseUrl = _configuration["ApiBaseUrl"];
+        }
 
-		public async Task<IViewComponentResult> InvokeAsync()
+
+public async Task<IViewComponentResult> InvokeAsync()
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.GetAsync("http://localhost:5001/api/Booking/Last6Bookings");
+			var responseMessage = await client.GetAsync($"{_apiBaseUrl}/api/Booking/Last6Bookings");
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responseMessage.Content.ReadAsStringAsync();

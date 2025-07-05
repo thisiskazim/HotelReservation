@@ -31,7 +31,7 @@ namespace HotelProjectWebApi.Controllers
 
             return Ok(values);
         }
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public IActionResult SendMessageList(int id)
         {
             var values = _contactService.TGetByID(id);

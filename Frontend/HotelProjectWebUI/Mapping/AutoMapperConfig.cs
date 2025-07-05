@@ -3,6 +3,7 @@ using HotelProjectEntityLayer.Concrete;
 using HotelProjectWebUI.Dtos.AboutDto;
 using HotelProjectWebUI.Dtos.AppUserDto;
 using HotelProjectWebUI.Dtos.BookingDto;
+using HotelProjectWebUI.Dtos.ContactDto;
 using HotelProjectWebUI.Dtos.GuestDto;
 using HotelProjectWebUI.Dtos.LoginDto;
 using HotelProjectWebUI.Dtos.RegisterDto;
@@ -32,7 +33,8 @@ namespace HotelProjectWebUI.Mapping
             CreateMap<ApprovedReservationDto, Booking>().ReverseMap();
             CreateMap<CreateGuestDto,Guest>().ReverseMap();
             CreateMap<UpdateGuestDto,Guest>().ReverseMap();
-
+            //CreateMap<GetMessageByIdDto, SendMessage>().ReverseMap();
+            //CreateMap<InboxContactDto, Contact>().ReverseMap();
             CreateMap<ResultAppUserDto,AppUser>().ReverseMap();
         }
     }

@@ -1,11 +1,10 @@
 ﻿using HotelProjectBusinessLayer.Abstract;
 using HotelProjectDataAccessLayer.Abstract;
 using HotelProjectEntityLayer.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HotelProjectBusinessLayer.ValidationRules;
+
 
 namespace HotelProjectBusinessLayer.Concrete
 {
@@ -20,8 +19,6 @@ namespace HotelProjectBusinessLayer.Concrete
 
         public void TBookingStatusChangeApproved(Booking booking)
         {
-
-
             _bookingDal.BookingStatusChangeApproved(booking);
         }
 
@@ -47,26 +44,42 @@ namespace HotelProjectBusinessLayer.Concrete
 
         public void TInsert(Booking t)
         {
-            //var varMi = _bookingDal.GetList();
-            //varMi.Where(p => p.BookingID = t.BookingID).FirstOrDefault();
-            if (t != null && t.Checkin > t.CheckOut)
+            var s = new BookingValidator();
+            var error = s.ValidatorsBook(t);
+
+
+            if (cakisanVarMi(t))
             {
-                t.ErrorMessages.Add("Giriş tarihi çıkış tarihinden büyük olamaz.");
+                t.ErrorMessages.Add("Aynı tarih aralığında birden fazla rezervasyon yapamazsınız.");
             }
-            if (t.Checkin < DateTime.Now.Date)
+
+            if (error.Any())
             {
-                t.ErrorMessages.Add("Giriş tarihi geçmişte olamaz.");
+                t.ErrorMessages = error;
+                return;
             }
-            if (t.ErrorMessages.Any())
-            {
-                return; // hata var, işleme devam etme
-            }
-            
+
+
             _bookingDal.Insert(t);
         }
 
         public void TUpdate(Booking t)
         {
+            var s = new BookingValidator();
+            var error = s.ValidatorsBook(t);
+
+            if (cakisanVarMi(t))
+            {
+                t.ErrorMessages.Add("Aynı tarih aralığında birden fazla rezervasyon yapamazsınız.");
+            }
+
+            if (error.Any())
+            {
+                t.ErrorMessages = error;
+                return;
+            }
+
+
             _bookingDal.Update(t);
         }
 
@@ -94,5 +107,16 @@ namespace HotelProjectBusinessLayer.Concrete
         {
            _bookingDal.BookingStatusChangeWait(id);
         }
+        public bool cakisanVarMi(Booking t)
+        {
+            var bookings = _bookingDal.GetByName(t.Name);
+
+            return bookings.Any(p =>
+                p.BookingID != t.BookingID &&
+                p.Checkin < t.CheckOut &&
+                p.CheckOut > t.Checkin);
+        }
+    
+
     }
 }

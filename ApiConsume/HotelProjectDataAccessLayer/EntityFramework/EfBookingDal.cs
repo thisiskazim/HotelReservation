@@ -96,5 +96,10 @@ namespace HotelProjectDataAccessLayer.EntityFramework
             }
 
         }
+
+        public IEnumerable<Booking> GetByName(string name)
+        {
+            return _context.Bookings.Where(P => P.Name == name);
+        }
     }
 }
